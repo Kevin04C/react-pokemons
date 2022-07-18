@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { pokemonApi } from "../api/pokemonApi";
+import { FormPokemon } from "../components/FormPokemon";
 import { LogoPokemon } from "../components/LogoPokemon";
 import { Spinner } from "../components/Spinner";
 import { addZero } from "../helpers";
@@ -8,6 +9,9 @@ import { addZero } from "../helpers";
 import styled from "./SearchPokemon.module.css";
 
 export const SearchPokemon = () => {
+
+  let navigate = useNavigate();
+
   const [dataPokemon, setDataPokemon] = useState({});
   const [isLoading, setIsLoading] = useState(false);
 
@@ -31,11 +35,24 @@ export const SearchPokemon = () => {
     getPokemon();
   }, [id]);
 
+   const handleToBack = () => {
+      navigate("/");
+   }
+
   return (
     <div className={styled.container}>
-      <nav>
+      <header>
         <LogoPokemon />
-      </nav>
+        <nav 
+          className={styled.nav}
+        >
+          <i 
+            class={`fa-solid fa-angle-left ${styled.icon_back}`}
+            onClick={handleToBack}
+          ></i>
+          <FormPokemon />
+        </nav>
+      </header>
       {isLoading ? (
         <Spinner />
       ) : (
@@ -55,14 +72,12 @@ export const SearchPokemon = () => {
                 />
               </figure>
             </div>
+            <div>
+              <p>Fuego</p>
+              <p>Bolador</p>
+            </div>
           </div>
-          <div>
-            <p>Fuego</p>
-            <p>Bolador</p>
-          </div>
-          <div className={styled.pokemon__statistics}>
-            aqui estadisticas
-          </div>
+          <div className={styled.pokemon__statistics}>aqui estadisticas</div>
         </div>
       )}
     </div>

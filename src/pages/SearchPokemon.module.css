@@ -2,17 +2,24 @@
   width: 90%;
   max-width: 1024px;
   margin: 0 auto;
-  height: 100vh;
+}
+
+header .nav {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+header .nav .icon_back {
+  font-size: 1.5rem;
+  color: #2b2b2b;
+  cursor: pointer;
 }
 
 .pokemon_search {
   margin: 3rem 0;
   width: 100%;
-  margin-top: 5rem;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  height: 100vh;
+  margin-top: 3.5rem;
 }
 .pokemon__header {
   display: flex;
@@ -47,6 +54,7 @@
   right: 0;
   bottom: 0;
   margin-top: -90px;
+  outline: 4px solid red;
 }
 .pokemon__statistics{
   flex-grow: 1;
