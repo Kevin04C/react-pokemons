@@ -1,0 +1,8 @@
+.grid_pokemons{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(155px, 1fr));
+  gap: 1rem;
+  place-items: center;
+  margin: 1rem 0 2rem 0;
+}
+
