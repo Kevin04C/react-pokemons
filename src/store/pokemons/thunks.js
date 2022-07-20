@@ -8,7 +8,7 @@ export const getPokemons = (page = 0) => {
 
     dispatch(startIsLoading())
     
-    const { data:{ results=[] } } = await pokemonApi.get(`pokemon?limit=40&offset=${page * 1}`)
+    const { data:{ results=[] } } = await pokemonApi.get(`pokemon?limit=40&offset=${page * 40}`)
     const response = await Promise.all(results.map(pokemon => axios.get(pokemon.url)))    
     const pokemons = response.map(pokemon => pokemon.data)
 

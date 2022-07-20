@@ -1,5 +1,30 @@
-.container{
+.container {
   width: 90%;
   max-width: 1024px;
   margin: 0 auto;
+}
+
+.btn_up {
+  font-size: 1.5rem;
+  animation: down 3.5s infinite ease-in-out;
+  background-color: #2b2b2b;
+  color: #fff;
+  padding: .5rem;
+  border-radius: 5px;
+  position: fixed;
+  right: 1rem;
+  bottom: 2rem;
+  
+}
+
+@keyframes down {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
 }

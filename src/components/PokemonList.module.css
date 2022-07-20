@@ -1,9 +1,28 @@
-.grid_pokemons{
+.grid_pokemons {
   display: grid;
-  /* grid-template-columns: repeat(auto-fit, minmax(155px, 1fr)); */
   grid-template-columns: repeat(2, 1fr);
   gap: 1rem;
   place-items: center;
-  margin: 2rem 0;
+  margin: 3.5rem 0 2rem 0;
 }
 
+@media screen and (min-width: 600px) {
+  .grid_pokemons {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media screen and (min-width: 768px) {
+  .grid_pokemons {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+@media screen and (min-width: 768px) {
+  .grid_pokemons {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+@media screen and (min-width: 1000px) {
+  .grid_pokemons {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}

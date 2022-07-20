@@ -8,12 +8,14 @@ import { LogoPokemon } from "../components/LogoPokemon";
 import { addZero } from "../helpers";
 
 import styled from "./SearchPokemon.module.css";
+import { PokemonNotFound } from "../components/PokemonNotFound";
 
 export const SearchPokemon = () => {
   let navigate = useNavigate();
 
   const [dataPokemon, setDataPokemon] = useState({});
   const [isLoading, setIsLoading] = useState(false);
+  const [isError, setIsError] = useState(false);
 
   const {
     id: idPokemon,
@@ -26,11 +28,11 @@ export const SearchPokemon = () => {
   } = dataPokemon;
 
   const writeTypes = () => {
-    let types = [];
+    let typesPoKemon = [];
 
-    if (dataPokemon.types) {
-      dataPokemon.types.forEach((type) => {
-        types.push(
+    if (types) {
+      types.forEach((type) => {
+        typesPoKemon.push(
           <p className={styled.pokemon__attributes__atribute}>
             {type.type.name}
           </p>
@@ -38,18 +40,20 @@ export const SearchPokemon = () => {
       });
     }
 
-    return types;
+    return typesPoKemon;
   };
 
   const { id } = useParams();
 
   const getPokemon = async () => {
+    setDataPokemon({});
+    setIsError(false);
     try {
       setIsLoading(true);
       const { data } = await pokemonApi.get(`/pokemon/${id}`);
       setDataPokemon(data);
     } catch (err) {
-      console.log(err);
+      if (err.response.status === 404) setIsError(true);
     } finally {
       setIsLoading(false);
     }
@@ -79,8 +83,10 @@ export const SearchPokemon = () => {
       </div>
       {isLoading ? (
         <Spinner />
+      ) : isError ? (
+        <PokemonNotFound />
       ) : (
-        <>
+        <div className={`${styled.wrapper_pokemon} ${styled.container}`} >
           <div className={`${styled.pokemon_search} ${styled.container}`}>
             <div className={styled.pokemon__header}>
               <span className={styled.pokemon__id}>
@@ -121,7 +127,7 @@ export const SearchPokemon = () => {
               </div>
             </div>
           </div>
-        </>
+        </div>
       )}
     </>
   );
